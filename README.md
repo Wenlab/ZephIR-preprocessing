@@ -54,7 +54,7 @@ First, navigate to the `data_directory` where your preprocessed data is stored.
 ```bash
 cd path/to/data_directory
 ```
-Replace path/to/data_directory with the actual path to your data directory.
+Replace path/to/data_directory with the actual path to your data directory. Copy `getters.py` and `metadata.json` to the `data_directory` as well. Modify `metadata.json` if the image stack size is different.
 
 ### Step 6: Activate ZephIR Environment
 Activate the ZephIR Conda environment by running:
