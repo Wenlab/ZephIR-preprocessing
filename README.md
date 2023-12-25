@@ -63,14 +63,14 @@ Activate the ZephIR Conda environment by running:
 conda activate ZephIR
 ```
 
-### Step 6: Follow ZephIR Instructions
+### Step 7: Follow ZephIR Instructions
 
 Next, follow the detailed instructions provided in the ZephIR guide. These instructions are available at the following URL:
 
 [ZephIR Guide](https://github.com/venkatachalamlab/ZephIR/blob/main/docs/Guide-ZephIR.md)
 
 
-### Step 7: Port Forwarding for Annotation GUI
+### Step 8: Port Forwarding for Annotation GUI
 Ensure that you forward port 5000 to your local computer when using Visual Studio Code (VSCode). This setup allows you to access the annotation GUI at localhost:5000.
 
 If port 5000 is not available or does not work, try using a different port number, such as 5001. Adjust your port forwarding settings accordingly.
