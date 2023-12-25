@@ -9,7 +9,6 @@ green_stacks_filename = [datasetpath, '/','ImgStk001_dk001_w6_Dt231025_{Green}_{
 temp_red = load(red_stacks_filename);
 temp_green = load(green_stacks_filename);
 
-
 field_r = fieldnames(temp_red);
 field_g = fieldnames(temp_green);
 
@@ -18,7 +17,7 @@ green_stacks = getfield(temp_green,field_g{1});
 clear temp_red;
 clear temp_green;
 
-centerline_filename = [datasetpath, '/','w6_{IR_vedio}_{from-3211-to-3710}_{correspoding-to-ImgStk001_dk001-1to50}.mat'];
+centerline_filename = [datasetpath, '/','w6_{IR_vedio}_{from-3211-to-3710}_{correspoding-to-ImgStk001_dk001-1to50}.mat']; % IR
 temp_centerline = load(centerline_filename);
 fieldname = fieldnames(temp_centerline);
 centerlines = getfield(temp_centerline,fieldname{1});
@@ -32,7 +31,3 @@ if binning
     green_stacks = binning2by2(green_stacks);
 
 end
-
-
-
-
