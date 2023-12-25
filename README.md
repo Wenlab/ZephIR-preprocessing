@@ -43,3 +43,37 @@ transform_and_reorganize_imagedata;
 
 After running the scripts, the reorganized data will be saved in the same folder as `data.mat`. This file is now ready to be used with ZephIR for neuron tracking analysis.
 
+## Running ZephIR on the Computational Server
+
+To run ZephIR on the computational server, follow these steps:
+
+### Step 5: Navigate to the Data Directory
+
+First, navigate to the `data_directory` where your preprocessed data is stored.
+
+```bash
+cd path/to/data_directory
+```
+Replace path/to/data_directory with the actual path to your data directory.
+
+### Step 6: Activate ZephIR Environment
+Activate the ZephIR Conda environment by running:
+
+```bash
+conda activate ZephIR
+```
+
+### Step 6: Follow ZephIR Instructions
+
+Next, follow the detailed instructions provided in the ZephIR guide. These instructions are available at the following URL:
+
+[ZephIR Guide](https://github.com/venkatachalamlab/ZephIR/blob/main/docs/Guide-ZephIR.md)
+
+
+### Step 7: Port Forwarding for Annotation GUI
+Ensure that you forward port 5000 to your local computer when using Visual Studio Code (VSCode). This setup allows you to access the annotation GUI at localhost:5000.
+
+If port 5000 is not available or does not work, try using a different port number, such as 5001. Adjust your port forwarding settings accordingly.
+
+
+
