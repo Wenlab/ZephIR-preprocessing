@@ -1,7 +1,7 @@
 addpath("../functions");
 addpath("../scripts");
 
-date_directory = '/Users/quanwen/Documents/GitHub/calcium imaging';
+data_directory = '/Users/quanwen/Documents/GitHub/calcium imaging';
 
 red_stacks_filename = [data_directory,'/', 'ImgStk001_dk001_w6_Dt231025_{red}_{from-3119-to-5118}_{1to50-trimed}.mat'];
 green_stacks_filename = [data_directory, '/','ImgStk001_dk001_w6_Dt231025_{Green}_{from-3119-to-5118}_{fliped}_{1to50-trimed}.mat'];

@@ -23,7 +23,7 @@ Locate the `load_data.m` MATLAB file under the `scripts` directory. You will nee
 
 ### Step 2: Decide on Image Binning
 
-Consider whether you want to bin your raw images. Binning can reduce the resolution of your images but may significantly speed up the processing time in ZephIR.
+Consider whether you want to bin your raw images. Binning can reduce the resolution of your images but may significantly speed up the processing time in ZephIR. Also note that ZephIR only supports `uint8` right now.
 
 - If you choose to bin your images, ensure that the binning process is incorporated into your preprocessing steps.
 
