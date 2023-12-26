@@ -60,6 +60,6 @@ for t=1:T
     end
 end
 
-filename = [date_directory, '/', 'data.mat'];
+filename = [data_directory, '/', 'data.mat'];
 save(filename, 'stacks', 'tform_parameters', '-mat');
 
