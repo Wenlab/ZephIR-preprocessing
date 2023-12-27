@@ -75,5 +75,21 @@ Ensure that you forward port 5000 to your local computer when using Visual Studi
 
 If port 5000 is not available or does not work, try using a different port number, such as 5001. Adjust your port forwarding settings accordingly.
 
+### Step 9: identify the coordinates of annotated points in the original image stacks
+Once you finish tracking all the neurons and saving your results in the `annotations.h5` using ZephIR, you can run the following scripts to find the normalized coordinates of these neurons in the original image stacks. 
+
+```matlab
+cd scripts
+annotations
+```
+The new `annotations.h5` should now contain the following and more:
+- t_idx: time index of each annotation
+- x: x-coordinate as a float between (0, 1)
+- y: y-coordinate as a float between (0, 1)
+- z: z-coordinate as a float between (0, 1)
+- x_original: x-coordinate as a float between (0, 1) in the original image stacks
+- y_original: y-coordinate as a float between (0, 1) in the original image stacks
+- worldline_id: track or worldline ID as an integer
+
 
 
