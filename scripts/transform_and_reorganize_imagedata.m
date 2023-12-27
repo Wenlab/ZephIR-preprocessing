@@ -34,7 +34,7 @@ tform_parameters = zeros(T,3);
 
 for t=1:T
 
-    img = uint8(max(red_stacks{t},[],3));
+    img = max(uint8(red_stacks{t}),[],3);
 
     [tform_param, lookup_PC1] = tform_parameter(img, theta_0, heading_direction(t), lookup_PC1);
 

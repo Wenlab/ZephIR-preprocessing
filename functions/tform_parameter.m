@@ -7,7 +7,7 @@ function [parameters, lookup_PC1] = tform_parameter(img, theta_0, heading_direct
 
     if sum(binary_img,'all') > num_positive_pixels
             
-        [cor_y,cor_x] = ind2sub(size(img),find(img));
+        [cor_y,cor_x] = ind2sub(size(binary_img),find(binary_img));
             
         x_centroid = mean(cor_x);
         %x is the column index, namely it represents the horizontal coordinate in an image
