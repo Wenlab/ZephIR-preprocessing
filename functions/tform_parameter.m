@@ -9,16 +9,16 @@ function [parameters, lookup_PC1] = tform_parameter(img, theta_0, heading_direct
             
         [cor_y,cor_x] = ind2sub(size(img),find(img));
             
-        x_center = mean(cor_x);
+        x_centroid = mean(cor_x);
         %x is the column index, namely it represents the horizontal coordinate in an image
-        y_center = mean(cor_y);
+        y_centroid = mean(cor_y);
         %y is the row index, namely it represents the vertical coordinate in an image
             
         Y = size(img,1);
         X = size(img,2);
             
-        delta_x = x_center - X/2;
-        delta_y = y_center - Y/2;
+        delta_x = x_centroid - X/2;
+        delta_y = y_centroid - Y/2;
 
         % use PCA to compute the main axis of head orientation
         cor_coef = pca([cor_x,cor_y]);
@@ -33,7 +33,7 @@ function [parameters, lookup_PC1] = tform_parameter(img, theta_0, heading_direct
         if isnan(heading_direction)
 
             delta_theta = cart2pol(lookup_PC1(1,end),lookup_PC1(2,end)) - cart2pol(lookup_PC1(1,1),lookup_PC1(2,1));
-            delta_theta = delta_theta/pi*180;
+            delta_theta = rad2deg(delta_theta);
 
         else
 

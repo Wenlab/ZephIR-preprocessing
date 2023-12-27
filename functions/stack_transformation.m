@@ -1,7 +1,7 @@
 function [red_stack, green_stack] = stack_transformation(red_stack,green_stack,tform_parameter, data_type)
         
            
-    % translate the image
+    % translate the neuron cluster to the center of an image
 
     if strcmp(data_type, 'uint8')
         red_stack = uint8(red_stack);
@@ -24,7 +24,7 @@ function [red_stack, green_stack] = stack_transformation(red_stack,green_stack,t
         green_stack(:,:,z) = imwarp(green_stack(:,:,z),tform,"cubic","OutputView",sameAsInput);
     end
 
-    %rotate the image
+    %rotate the image counterclockwisely
 
     theta = tform_parameter(3);
             

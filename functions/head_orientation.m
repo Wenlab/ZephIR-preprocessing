@@ -8,7 +8,7 @@ function heading_angles = head_orientation(centerlines)
     end
     heading_angles = unwrap(angles);
     heading_angles = heading_angles - heading_angles(1);
-    heading_angles = heading_angles/pi*180;
+    heading_angles = rad2deg(heading_angles);
    
 
 end
