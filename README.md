@@ -83,7 +83,7 @@ cd scripts
 annotations
 ```
 The new `annotations.h5` should now contain the following and more:
-- t_idx: time index of each annotation
+- t_idx: time index of each annotation, starting from 0
 - x: x-coordinate as a float between (0, 1)
 - y: y-coordinate as a float between (0, 1)
 - z: z-coordinate as a float between (0, 1)
