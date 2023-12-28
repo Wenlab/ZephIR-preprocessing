@@ -40,26 +40,34 @@ function [theta, PC1] = check_first_volume(stack)
             fprintf('PC1 angle (red) = %2f \n', theta1/pi*180);
             annotation('arrow',[0.5, 0.5+0.05*cos(theta2)], [0.5, 0.5+0.05*sin(theta2)],'Color','g');
             fprintf('PC2 angle (green) = %2f \n', theta2/pi*180);
+            filename = fullfile('MIP_of_first_stack.png');
+            exportgraphics(gca,filename);
 
-            prompt = {'Flip PC1 no/yes'};
-            dlgtitle = 'PC1';
-            dims = [1 40];
-            definput = {'no'};
-            answer = inputdlg(prompt,dlgtitle,dims,definput);
+            fprintf('Check %s in the current directory \n', filename);
+            fprintf('red arrow indicates PC1 direction \n');
+
+            reply = input('Flip PC1? Y/N [N]:','s');
+            
+            if isempty(reply)
+                reply = 'N';
+            end
+
             PC1 = cor_coef(:,1);
-            if strcmp(answer{1},'yes')
+            
+            if strcmp(reply,'Y')
                 PC1 = -PC1;
             end
 
-            prompt = {'Enter the rotation angle \theta (in degrees) between PC1 and -x axis'};
-            dlgtitle = 'Theta Value';
-            dims = [1 60];
-            suggested_angle = round(acos(dot(PC1,[-1;0]))/pi*180);
-            definput = {num2str(suggested_angle)};
-            opts.Interpreter = 'tex';
-            answer = inputdlg(prompt,dlgtitle,dims,definput,opts);  
+            suggested_angle = acos(dot(PC1,[-1;0]))/pi*180;
+
+            reply = input('Enter the rotation angle (in degrees) between PC1 and -x axis: ','s');
             
-            theta = str2double(answer{1});
+            if isempty(reply)              
+                theta = round(suggested_angle);
+                fprintf('use suggested angle %d \n', theta);
+            else
+                theta = str2double(reply);
+            end
             
     
 
