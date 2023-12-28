@@ -44,7 +44,6 @@ for t=1:T
                                                                     green_stacks{t},...
                                                                     tform_param,...
                                                                     data_type);
-
         %reorganize data into the following order: T C Z Y X
     
         red_stack_tformed = permute(red_stack_tformed,[3,1,2]);

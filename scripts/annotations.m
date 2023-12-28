@@ -1,3 +1,5 @@
+
+
 x = h5read([data_directory,'/','annotations.h5'],'/x');
 y = h5read([data_directory,'/','annotations.h5'],'/y');
 %x and y are normalized coordinates of the annotated points
@@ -26,12 +28,13 @@ for i = 1:Size
     y_original(i) = single(point(2));
 end
 
+copyfile([data_directory,'/','annotations.h5'], [data_directory,'/','annotations_edited.h5']);
 
-h5create([data_directory,'/','annotations.h5'],'/x_original',Size);
-h5write([data_directory,'/','annotations.h5'],'/x_original',x_original);
+h5create([data_directory,'/','annotations_edited.h5'],'/x_original',Size);
+h5write([data_directory,'/','annotations_edited.h5'],'/x_original',x_original);
 
-h5create([data_directory,'/','annotations.h5'],'/y_original',Size);
-h5write([data_directory,'/','annotations.h5'],'/y_original',y_original);
+h5create([data_directory,'/','annotations_edited.h5'],'/y_original',Size);
+h5write([data_directory,'/','annotations_edited.h5'],'/y_original',y_original);
 
 
     
