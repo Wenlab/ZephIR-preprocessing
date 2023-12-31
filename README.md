@@ -69,6 +69,27 @@ Next, follow the detailed instructions provided in the ZephIR guide. These instr
 
 [ZephIR Guide](https://github.com/venkatachalamlab/ZephIR/blob/main/docs/Guide-ZephIR.md)
 
+Here are three major steps. 
+
+- Find a few (specified by `--n_frames`) reference frames where we first perform manual annotaions. 
+
+```bash
+recommend_frames --dataset=. --n_frames=10
+```
+ZephIR would identify the similarity between different imaging frames and recommend `n_frames` root frames. 
+
+- Run the following script to open the annotation GUI.  Perform manual annotation on the reference frames and save the results.
+
+```bash
+annotator --dataset=. --port=5001
+```
+- Close the annoation GUI. Now perform machine tracking of the rest frames. Copy `args.json` to the dataset folder. This file contains tuning parameters that I find work well for sparsely labelled neurons in crawling worms. Now run
+
+```bash
+zephir --dataset=. --load_args=True
+```
+- Reopen the annotation GUI to check and proofread the results. 
+
 
 ### Step 8: Port Forwarding for Annotation GUI
 Ensure that you forward port 5000 to your local computer when using Visual Studio Code (VSCode). This setup allows you to access the annotation GUI at localhost:5000.

@@ -1,10 +1,10 @@
 addpath("../functions");
 addpath("../scripts");
 
-data_directory = '/Users/quanwen/Documents/GitHub/calcium imaging';
+data_directory = '/Users/quanwen/Documents/GitHub/calcium imaging/w10';
 
-red_stacks_filename = [data_directory,'/', 'ImgStk001_dk001_w6_Dt231025_{red}_{from-3119-to-5118}_{1to50-trimed}.mat'];
-green_stacks_filename = [data_directory, '/','ImgStk001_dk001_w6_Dt231025_{Green}_{from-3119-to-5118}_{fliped}_{1to50-trimed}.mat'];
+red_stacks_filename = [data_directory,'/', 'imgstk1_red.mat'];
+green_stacks_filename = [data_directory, '/','imgstk1_green.mat'];
 
 temp_red = load(red_stacks_filename);
 temp_green = load(green_stacks_filename);
@@ -18,13 +18,13 @@ green_stacks = getfield(temp_green,field_g{1});
 clear temp_red;
 clear temp_green;
 
-centerline_filename = [data_directory, '/','w6_{IR_vedio}_{from-3211-to-3710}_{correspoding-to-ImgStk001_dk001-1to50}.mat'];
+centerline_filename = [data_directory, '/','w10/imgstk1_IR_centerline.mat'];
 temp_centerline = load(centerline_filename);
 fieldname = fieldnames(temp_centerline);
 centerlines = getfield(temp_centerline,fieldname{1});
 clear temp_centerline;
 
-binning = true;
+binning = false;
 
 if binning
 
