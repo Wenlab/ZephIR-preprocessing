@@ -24,7 +24,7 @@ fieldname = fieldnames(temp_centerline);
 centerlines = getfield(temp_centerline,fieldname{1});
 clear temp_centerline;
 
-binning = false;
+binning = true;
 
 if binning
 
