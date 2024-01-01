@@ -13,6 +13,12 @@ y_original = y;
 Size = length(x);
 %Size = number of annotated neurons \times number of time points
 
+if isempty(tform_parameters)
+    
+    tform_parameters = h5read([data_directory,'/','data.h5'],'/tform_parameters');
+
+end
+
 for i = 1:Size
     delta_x = tform_parameters(t_idx(i)+1,1);
     delta_y = tform_parameters(t_idx(i)+1,2);

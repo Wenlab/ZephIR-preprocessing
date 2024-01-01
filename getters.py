@@ -19,13 +19,9 @@ def get_slice(dataset: Path, t: int) -> np.ndarray:
     This should return a 4-D numpy array containing multi-channel volumetric data
     with the dimensions ordered as (C, Z, Y, X).
     """
-
-    mat_filename = dataset / "data.mat"
-    mat_data = loadmat(mat_filename)
-    
-    data = mat_data["stacks"]
-    
-    return data[t]
+    h5_filename = dataset / "data.h5"
+    with h5py.File(h5_filename, 'r') as f:
+        return f["data"][t]
     
 
 def get_annotation_df(dataset: Path) -> pd.DataFrame:
