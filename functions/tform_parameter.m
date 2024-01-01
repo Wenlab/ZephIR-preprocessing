@@ -1,4 +1,4 @@
-function [parameters, lookup_PC1] = tform_parameter(img, theta_0, heading_direction, lookup_PC1)
+function [parameters, lookup_direction] = tform_parameter(img, theta_0, heading_direction, lookup_direction)
 
     threshold = 170;
     num_positive_pixels = 250;
@@ -23,7 +23,8 @@ function [parameters, lookup_PC1] = tform_parameter(img, theta_0, heading_direct
         % use PCA to compute the main axis of head orientation
         cor_coef = pca([cor_x,cor_y]);
         PC1 = cor_coef(:,1);
-        lookup_PC1 = compare_PCs(PC1,lookup_PC1);
+        PC2 = cor_coef(:,2);
+        lookup_direction = compare_PCs(PC1,PC2,lookup_direction);
 
 
          % heading direction is obtained from infrared videos. 
@@ -32,7 +33,7 @@ function [parameters, lookup_PC1] = tform_parameter(img, theta_0, heading_direct
          % neurons
         if isnan(heading_direction)
 
-            delta_theta = cart2pol(lookup_PC1(1,end),lookup_PC1(2,end)) - cart2pol(lookup_PC1(1,1),lookup_PC1(2,1));
+            delta_theta = cart2pol(lookup_direction(1,end),lookup_direction(2,end)) - cart2pol(lookup_direction(1,1),lookup_direction(2,1));
             delta_theta = rad2deg(delta_theta);
 
         else

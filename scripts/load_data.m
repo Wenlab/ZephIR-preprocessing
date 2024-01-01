@@ -1,10 +1,10 @@
 addpath("../functions");
 addpath("../scripts");
 
-data_directory = '/Users/quanwen/Documents/GitHub/calcium imaging/w10';
+data_directory = '/Users/quanwen/Documents/GitHub/calcium imaging/w10_dataset2';
 
-red_stacks_filename = [data_directory,'/', 'imgstk1_red.mat'];
-green_stacks_filename = [data_directory, '/','imgstk1_green.mat'];
+red_stacks_filename = [data_directory,'/', 'imgstk2_red.mat'];
+green_stacks_filename = [data_directory, '/','imgstk2_green.mat'];
 
 temp_red = load(red_stacks_filename);
 temp_green = load(green_stacks_filename);
@@ -18,7 +18,7 @@ green_stacks = getfield(temp_green,field_g{1});
 clear temp_red;
 clear temp_green;
 
-centerline_filename = [data_directory, '/','w10/imgstk1_IR_centerline.mat'];
+centerline_filename = [data_directory, '/','imgstk2_IR_centerline.mat'];
 temp_centerline = load(centerline_filename);
 fieldname = fieldnames(temp_centerline);
 centerlines = getfield(temp_centerline,fieldname{1});

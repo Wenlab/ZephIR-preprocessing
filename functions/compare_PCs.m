@@ -1,11 +1,26 @@
-function lookup_PC1 = compare_PCs(PC1,lookup_PC1)
+function lookup_direction = compare_PCs(PC1,PC2, lookup_direction)
 
-    if dot(PC1,lookup_PC1(:,end)) > 0
-        lookup_PC1(:,end+1) = PC1;
+    %acos(\delta_theta) < 45 degree
 
-    elseif dot(PC1,lookup_PC1(:,end)) < 0
+    if dot(PC1,lookup_direction(:,end)) > 0.707 
+        lookup_direction(:,end+1) = PC1;
 
-         lookup_PC1(:,end+1) = -PC1;
+    end
+
+    if dot(PC1,lookup_direction(:,end)) < -0.707
+
+         lookup_direction(:,end+1) = -PC1;
+    end
+
+    if dot(PC2,lookup_direction(:,end)) > 0.707
+
+        lookup_direction(:,end+1) = PC2;
+
+    end
+
+    if dot(PC2,lookup_direction(:,end)) < - 0.707
+
+        lookup_direction(:,end+1) = -PC2;
 
     end
 

@@ -37,30 +37,39 @@ function [theta, PC1] = check_first_volume(stack)
             figure; imshow(xy_MIP);
             hold on; 
             annotation('arrow',[0.5, 0.5+0.1*cos(theta1)], [0.5, 0.5+0.1*sin(theta1)],'Color','r');
-            fprintf('PC1 angle (red) = %2f \n', theta1/pi*180);
-            annotation('arrow',[0.5, 0.5+0.05*cos(theta2)], [0.5, 0.5+0.05*sin(theta2)],'Color','g');
-            fprintf('PC2 angle (green) = %2f \n', theta2/pi*180);
+            fprintf('red arrow angle = %2f \n', theta1/pi*180);
+            annotation('arrow',[0.5, 0.5+0.1*cos(theta2)], [0.5, 0.5+0.1*sin(theta2)],'Color','g');
+            fprintf('green arrow angle = %2f \n', theta2/pi*180);
             filename = fullfile('MIP_of_first_stack.png');
             exportgraphics(gca,filename);
 
             fprintf('Check %s in the current directory \n', filename);
-            fprintf('red arrow indicates PC1 direction \n');
 
-            reply = input('Flip PC1? Y/N [N]:','s');
-            
-            if isempty(reply)
-                reply = 'N';
+            reply = input('Is the head direction in parallel with the red or green arrow? Input red/green [red]:', 's');
+
+            if strcmp(reply,'red')
+                PC1 = cor_coef(:,1);
+                fprintf('red arrow (PC1) indicates head direction \n');
+            else
+                PC1 = cor_coef(:,2);
+                fprintf('green arrow (PC1) indicates head direction \n');
             end
 
-            PC1 = cor_coef(:,1);
+            flip = input('Flip PC1 to better represent head direction? Y/N [N]:','s');
             
-            if strcmp(reply,'Y')
+            if isempty(flip)
+                flip = 'N';
+            end
+            
+            if strcmp(flip,'Y')
                 PC1 = -PC1;
             end
 
             suggested_angle = acos(dot(PC1,[-1;0]))/pi*180;
 
-            reply = input('Enter the rotation angle (in degrees) between PC1 and -x axis: ','s');
+            fprintf('The rotation angle between PC1 and -x axis is about %d degrees \n', round(suggested_angle));
+
+            reply = input('Enter the rotation angle (in degrees) between PC1 and -x axis [Return to use suggested angle]: ','s');
             
             if isempty(reply)              
                 theta = round(suggested_angle);
