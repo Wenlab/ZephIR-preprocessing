@@ -5,11 +5,11 @@ This README provides instructions on how to use the preprocessing code to transf
 ## Prerequisites
 
 Before you begin, ensure that your dataset includes the following:
-- Green fluorescence imaging data
-- Red fluorescence imaging data
-- Worm centerline data
+- Green fluorescence imaging data acquired from Zyla 4.2
+- Red fluorescence imaging data acquired from Zyla 4.2
+- Worm centerline data from IR videos to extract head direction.
 
-These data are essential for the successful application of the preprocessing steps.
+These data are essential for the successful application of the preprocessing steps. Note that if you don't have worm centerline data, the algorithm will use PCA-related method to identify head direction from fluophore image stacks, which also works well. 
 
 ## Step-by-Step Guide
 
@@ -37,7 +37,7 @@ load_data;
 transform_and_reorganize_imagedata;
 ```
 
-`load_data` will load your specified dataset. `transform_and_reorganize_imagedata` will apply necessary transformations and reorganize the data for ZephIR compatibility.
+`load_data` will load your specified dataset. `transform_and_reorganize_imagedata` will apply necessary transformations and reorganize the data for ZephIR compatibility. 
 
 ### Step 4: Access the Processed Data
 
