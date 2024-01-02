@@ -1,5 +1,10 @@
+clear all
+close all
+
 addpath("../functions");
 addpath("../scripts");
+
+
 
 data_directory = '/Users/quanwen/Documents/GitHub/calcium imaging/w10_dataset2';
 
