@@ -41,7 +41,7 @@ transform_and_reorganize_imagedata;
 
 ### Step 4: Access the Processed Data
 
-After running the scripts, the reorganized data will be saved in the same folder as `data.mat`. This file is now ready to be used with ZephIR for neuron tracking analysis.
+After running the scripts, the reorganized data will be saved in the same folder as `data.h5`. This file is now ready to be used with ZephIR for neuron tracking analysis.
 
 ## Running ZephIR on the Computational Server
 
