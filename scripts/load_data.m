@@ -6,7 +6,7 @@ addpath("../scripts");
 
 
 
-data_directory = '/Users/quanwen/Documents/GitHub/calcium imaging/w10_dataset2';
+data_directory = '/home/data2/wenquan/wormdata/calcium-imaging/SAA/w10_dataset2';
 
 red_stacks_filename = [data_directory,'/', 'imgstk2_red.mat'];
 green_stacks_filename = [data_directory, '/','imgstk2_green.mat'];
@@ -23,12 +23,6 @@ green_stacks = getfield(temp_green,field_g{1});
 clear temp_red;
 clear temp_green;
 
-centerline_filename = [data_directory, '/','imgstk2_IR_centerline.mat'];
-temp_centerline = load(centerline_filename);
-fieldname = fieldnames(temp_centerline);
-centerlines = getfield(temp_centerline,fieldname{1});
-clear temp_centerline;
-
 binning = true;
 
 if binning
@@ -37,6 +31,15 @@ if binning
     green_stacks = binning2by2(green_stacks);
 
 end
+
+%if centerline has been extracted, load them. If not, explain away the following lines.
+centerline_filename = [data_directory, '/','imgstk2_IR_centerline.mat'];
+temp_centerline = load(centerline_filename);
+fieldname = fieldnames(temp_centerline);
+centerlines = getfield(temp_centerline,fieldname{1});
+clear temp_centerline;
+
+
 
 
 

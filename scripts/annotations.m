@@ -1,4 +1,4 @@
-
+addpath("../functions");
 
 x = h5read([data_directory,'/','annotations.h5'],'/x');
 y = h5read([data_directory,'/','annotations.h5'],'/y');
