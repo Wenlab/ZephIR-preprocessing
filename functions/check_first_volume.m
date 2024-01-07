@@ -1,7 +1,7 @@
-function [theta, PC1] = check_first_volume(stack)
+function [parameters, PC1] = check_first_volume(stack)
 
         stack = uint8(stack);
-        threshold = 170;
+        %threshold = 150;
         num_positive_pixels = 250;
 
         projection_dim = 3;
@@ -11,8 +11,8 @@ function [theta, PC1] = check_first_volume(stack)
         
    
     %- Apply a threshold to the MIP for highlighting specific features:
-        %binary_red_xy_MIP = imbinarize(red_xy_MIP,'adaptive');
-        binary_xy_MIP = xy_MIP > threshold;
+        binary_xy_MIP = imbinarize(xy_MIP,'adaptive','Sensitivity',0.3);
+        %binary_xy_MIP = xy_MIP > threshold;
 
         if sum(binary_xy_MIP,'all') > num_positive_pixels
 
@@ -47,7 +47,7 @@ function [theta, PC1] = check_first_volume(stack)
 
             reply = input('Is the head direction in parallel with the red or green arrow? Input red/green [red]:', 's');
 
-            if strcmp(reply,'red')
+            if strcmp(reply,'red') || isempty(reply)
                 PC1 = cor_coef(:,1);
                 fprintf('red arrow (PC1) indicates head direction \n');
             else
@@ -69,6 +69,8 @@ function [theta, PC1] = check_first_volume(stack)
 
             fprintf('The rotation angle between PC1 and -x axis is about %d degrees \n', round(suggested_angle));
 
+            fprintf('Positive angle is counterclockwise rotation \n');
+
             reply = input('Enter the rotation angle (in degrees) between PC1 and -x axis [Return to use suggested angle]: ','s');
             
             if isempty(reply)              
@@ -77,6 +79,13 @@ function [theta, PC1] = check_first_volume(stack)
             else
                 theta = str2double(reply);
             end
+            
+            X = size(stack,2);
+            Y = size(stack,1);
+            normalized_delta_x = delta_x/X;
+            normalized_delta_y = delta_y/Y;
+
+            parameters = [normalized_delta_x normalized_delta_y theta];
             
     
 

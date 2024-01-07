@@ -2,7 +2,7 @@ function lookup_direction = compare_PCs(PC1,PC2,lookup_direction)
 
     end_frame = size(lookup_direction,2);
 
-    time_window = 2;
+    time_window = 1;
 
     start_frame = max(1,end_frame-time_window);
 

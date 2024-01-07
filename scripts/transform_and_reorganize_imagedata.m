@@ -26,18 +26,39 @@ end
 
 %return the rotation angle of the first image stack and the principal axis
 %of PC1
-[theta_0, lookup_PC1] = check_first_volume(red_stacks{1});
+[tform_param, lookup_PC1] = check_first_volume(red_stacks{1});
+
+[red_stack_tformed, green_stack_tformed] = stack_transformation(red_stacks{1},...
+                                                                green_stacks{1},...
+                                                                tform_param,...
+                                                                data_type);
+
+template = max(red_stack_tformed,[],3);
+
+red_stack_tformed = permute(red_stack_tformed,[3,1,2]);
+green_stack_tformed = permute(green_stack_tformed,[3,1,2]);
+stacks(1,2,:,:,:) = green_stack_tformed;
+stacks(1,1,:,:,:) = red_stack_tformed;
 
 tform_parameters = zeros(T,3);
+tform_parameters(1,:) = tform_param;
+theta_0 = tform_param(3);
+
+
 %translation delta_x, delta_y in normalized coordinates.
 %rotation angle theta
 
-for t=1:T
+
+
+
+for t=2:T
 
     img = max(uint8(red_stacks{t}),[],3);
 
     [tform_param, lookup_PC1] = tform_parameter(img, theta_0, heading_direction(t), lookup_PC1);
-
+    %tform_param = tform_parameter2(img, template);
+    
+    
     if ~isempty(tform_param)
     
         [red_stack_tformed, green_stack_tformed] = stack_transformation(red_stacks{t},...
@@ -48,8 +69,8 @@ for t=1:T
     
         red_stack_tformed = permute(red_stack_tformed,[3,1,2]);
         green_stack_tformed = permute(green_stack_tformed,[3,1,2]);
-        stacks(t,1,:,:,:) = green_stack_tformed;
-        stacks(t,2,:,:,:) = red_stack_tformed;
+        stacks(t,2,:,:,:) = green_stack_tformed;
+        stacks(t,1,:,:,:) = red_stack_tformed;
         tform_parameters(t,:) = tform_param;
 
         fprintf('t = %d stack has been preprocessed!\n', t);

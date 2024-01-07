@@ -1,9 +1,11 @@
 function [parameters, lookup_direction] = tform_parameter(img, theta_0, heading_direction, lookup_direction)
 
-    threshold = 170;
+    %threshold = 170;
     num_positive_pixels = 250;
 
-    binary_img = img > threshold;
+    binary_img = imbinarize(img,'adaptive','Sensitivity',0.3);
+
+    %binary_img = img > threshold;
 
     if sum(binary_img,'all') > num_positive_pixels
             
@@ -33,7 +35,7 @@ function [parameters, lookup_direction] = tform_parameter(img, theta_0, heading_
         if isnan(heading_direction)
 
             delta_theta = cart2pol(lookup_direction(1,end),lookup_direction(2,end)) - cart2pol(lookup_direction(1,1),lookup_direction(2,1));
-            delta_theta = rad2deg(delta_theta);
+            delta_theta = wrapTo180(rad2deg(delta_theta));
 
         else
 
@@ -47,7 +49,7 @@ function [parameters, lookup_direction] = tform_parameter(img, theta_0, heading_
 
          %rotate the stack
         
-        theta = theta_0 - delta_theta;
+        theta = wrapTo180(theta_0 - delta_theta);
 
         normalized_delta_x = delta_x/X;
         normalized_delta_y = delta_y/Y;
