@@ -22,7 +22,7 @@ green_stacks = getfield(temp_green,field_g{1});
 clear temp_red;
 clear temp_green;
 
-binning = false;
+binning = true;
 
 if binning
 
