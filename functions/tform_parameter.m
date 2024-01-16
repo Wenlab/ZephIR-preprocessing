@@ -31,7 +31,7 @@ function [parameters, lookup_direction] = tform_parameter(img, theta_0, heading_
 
          % heading direction is obtained from infrared videos. 
          % In case it is not available, we will turn to orientation
-         % defined by PCA, which also works well
+         % defined by PCA, which also works well if many neurons can be identified 
         if isnan(heading_direction)
 
             delta_theta = cart2pol(lookup_direction(1,end),lookup_direction(2,end)) - cart2pol(lookup_direction(1,1),lookup_direction(2,1));

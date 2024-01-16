@@ -12,6 +12,9 @@ Z = size(red_stacks{1},3);
 
 stacks = zeros(T,C,Z,Y,X,data_type);
 
+
+
+
 %the heading_direction is extracted from the centerlines, where the
 %direction at t=0 is defined as 0.
 if exist('centerlines','var')
@@ -23,6 +26,8 @@ if exist('centerlines','var')
 else
     heading_direction = nan(1,T);
 end
+
+
 
 %return the rotation angle of the first image stack and the principal axis
 %of PC1
@@ -41,8 +46,17 @@ stacks(1,2,:,:,:) = green_stack_tformed;
 stacks(1,1,:,:,:) = red_stack_tformed;
 
 tform_parameters = zeros(T,3);
+
+%when head direction cannot be easily extracted (either using PCA or centerlines)
+forbid_rotation = true;
+
+if forbid_rotation
+    tform_param(3) = 0;
+end
+
 tform_parameters(1,:) = tform_param;
 theta_0 = tform_param(3);
+
 
 
 %translation delta_x, delta_y in normalized coordinates.
@@ -57,7 +71,9 @@ for t=2:T
 
     [tform_param, lookup_PC1] = tform_parameter(img, theta_0, heading_direction(t), lookup_PC1);
     %tform_param = tform_parameter2(img, template);
-    
+    if forbid_rotation
+        tform_param(3) = 0;
+    end
     
     if ~isempty(tform_param)
     
