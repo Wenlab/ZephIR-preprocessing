@@ -1,13 +1,13 @@
 function [parameters, lookup_direction] = tform_parameter(img, theta_0, heading_direction, lookup_direction)
 
     %threshold = 170;
-    num_positive_pixels = 250;
+    num_positive_pixels = 150;
 
     binary_img = imbinarize(img,'adaptive','Sensitivity',0.3);
 
     %binary_img = img > threshold;
 
-    if sum(binary_img,'all') > num_positive_pixels
+   % if sum(binary_img,'all') > num_positive_pixels
             
         [cor_y,cor_x] = ind2sub(size(binary_img),find(binary_img));
             
@@ -56,12 +56,12 @@ function [parameters, lookup_direction] = tform_parameter(img, theta_0, heading_
 
         parameters = [normalized_delta_x normalized_delta_y theta];
 
-    else
+   % else
 
-        disp('no worms can be found!')
-        parameters = [];
+%        disp('no worms can be found!')
+ %       parameters = [];
 
-    end
+%    end
 
 end
 

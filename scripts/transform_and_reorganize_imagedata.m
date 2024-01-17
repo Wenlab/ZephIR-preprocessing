@@ -34,7 +34,7 @@ end
 
 %when head direction cannot be easily extracted (either using PCA or centerlines)
 %do not perform rotation
-forbid_rotation = True;
+forbid_rotation = true;
 
 if forbid_rotation
     tform_param(3) = 0;
