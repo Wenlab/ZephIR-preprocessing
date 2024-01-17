@@ -28,10 +28,17 @@ else
 end
 
 
-
 %return the rotation angle of the first image stack and the principal axis
 %of PC1
 [tform_param, lookup_PC1] = check_first_volume(red_stacks{1});
+
+%when head direction cannot be easily extracted (either using PCA or centerlines)
+%do not perform rotation
+forbid_rotation = True;
+
+if forbid_rotation
+    tform_param(3) = 0;
+end
 
 [red_stack_tformed, green_stack_tformed] = stack_transformation(red_stacks{1},...
                                                                 green_stacks{1},...
@@ -46,14 +53,6 @@ stacks(1,2,:,:,:) = green_stack_tformed;
 stacks(1,1,:,:,:) = red_stack_tformed;
 
 tform_parameters = zeros(T,3);
-
-%when head direction cannot be easily extracted (either using PCA or centerlines)
-forbid_rotation = true;
-
-if forbid_rotation
-    tform_param(3) = 0;
-end
-
 tform_parameters(1,:) = tform_param;
 theta_0 = tform_param(3);
 
