@@ -2,7 +2,7 @@ function [parameters, PC1] = check_first_volume(stack)
 
         stack = uint8(stack);
         %threshold = 150;
-        num_positive_pixels = 250;
+        num_positive_pixels = 150;
 
         projection_dim = 3;
 
@@ -14,7 +14,7 @@ function [parameters, PC1] = check_first_volume(stack)
         binary_xy_MIP = imbinarize(xy_MIP,'adaptive','Sensitivity',0.3);
         %binary_xy_MIP = xy_MIP > threshold;
 
-        if sum(binary_xy_MIP,'all') > num_positive_pixels
+        %if sum(binary_xy_MIP,'all') > num_positive_pixels
 
             [cor_y,cor_x] = ind2sub(size(binary_xy_MIP),find(binary_xy_MIP));
             x_center = mean(cor_x);
@@ -89,9 +89,9 @@ function [parameters, PC1] = check_first_volume(stack)
             
     
 
-        else
-            disp('find no worms!');
-        end
+       % else
+       %     disp('find no worms!');
+      % end
 
         close all
 

@@ -6,9 +6,9 @@ addpath("../scripts");
 
 
 
-data_directory = '/Users/quanwen/Documents/GitHub/calcium imaging/Liuqi';
-red_stacks_filename = [data_directory,'/', 'imgstk001_dk001_w1_red_561to760.mat'];
-green_stacks_filename = [data_directory, '/','imgstk001_dk001_w1_green_561to760.mat'];
+data_directory = 'F:\SAA\20240109_saa_wNEMOs_preprocess\w2\stk1\';
+red_stacks_filename = [data_directory,'/', 'ImgStk001_dk001_w2_red_812to1811.mat'];
+green_stacks_filename = [data_directory, '/','ImgStk001_dk001_w2_green_812to1811.mat'];
 
 temp_red = load(red_stacks_filename);
 temp_green = load(green_stacks_filename);
