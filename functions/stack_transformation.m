@@ -4,8 +4,8 @@ function [red_stack, green_stack] = stack_transformation(red_stack,green_stack,t
     % translate the neuron cluster to the center of an image
 
     if strcmp(data_type, 'uint8')
-        red_stack = uint8(red_stack);
-        green_stack = uint8(green_stack);
+        red_stack = convert2uint8(red_stack);
+        green_stack = convert2uint8(green_stack);
     end
 
     X = size(red_stack,2);
